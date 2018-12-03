@@ -1,68 +1,56 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">     
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Formulario</title>
-</head>
-<body>
-   
-    <form class="needs-validation" novalidate>
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="validationTooltip01">First name</label>
-            <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required>
-            <div class="valid-tooltip">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationTooltip02">Last name</label>
-            <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>
-            <div class="valid-tooltip">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationTooltipUsername">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-              </div>
-              <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
-              <div class="invalid-tooltip">
-                Please choose a unique and valid username.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="validationTooltip03">City</label>
-            <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
-            <div class="invalid-tooltip">
-              Please provide a valid city.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationTooltip04">State</label>
-            <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
-            <div class="invalid-tooltip">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationTooltip05">Zip</label>
-            <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-            <div class="invalid-tooltip">
-              Please provide a valid zip.
-            </div>
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </form>
+    <title>Bodas</title>
 
-</body>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'core/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+   
+</head>
+
+<body>
+        
+    <div class="main">
+
+        <div class="container">
+            <form method="POST" class="appointment-form" id="appointment-form">
+                <h2>Formulario de Bodas</h2>
+                <div class="form-group-1">
+                    <input type="text" name="nombreNovia" id="nombreNovia" placeholder="Nombre de la Novia" required />
+                    <input type="text" name="nombreNovio" id="nombreNovio" placeholder="Nombre del Novio" required />
+                    <input type="text" name="numeroContacto" id="numeroContacto" placeholder="Numero de Contacto" required />
+                    <input type="number" name="emailContacto" id="numeroContacto" placeholder="Email de Contaco" required />
+                    <div class="select-list">
+                        <select name="course_type" id="course_type">
+                            <option slected value="">Paroquia</option>
+                            <option value="san_jose_del_maipo">San Jose Del Maipo</option>
+                            <option value="language">Melipilla</option>
+                            <option value="language">Buin</option>
+                        </select>
+                    </div>
+                  
+                </div>
+                
+                <center>
+                <div class="form-submit">
+                    <input type="submit" name="enviar" id="enviar" class="submit" value="Enviar" />
+                </div>
+                </center>
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'core/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

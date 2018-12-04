@@ -9,11 +9,36 @@ class Comunidad(models.Model):
     def __str__(self):
         return self.nombre
 
+class Agente(models.Model):
+    nombreAgente = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombreAgente
+
+class Ministro(models.Model):
+    nombreMinistro = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombreMinistro
+
+class Coordinador(models.Model):
+    nombreCoordinador = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombreCoordinador
+
 class Comunidadcatolica(models.Model):
     NombreComunidad = models.CharField(max_length=45)
 
     def __str__(self):
         return self.NombreComunidad
+
+class Login(models.Model):
+    usuario = models.CharField(max_length=45)
+    contrasena = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.usuario
 
 
 class Bautizo(models.Model):
@@ -48,3 +73,11 @@ class Comunion(models.Model):
 
     def __str__(self):
         return self.nombreComunion
+
+class Persona(models.Model):
+    nombre = models.CharField(max_length=45)
+    apellido = models.CharField(max_length=45)
+    edad = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombre

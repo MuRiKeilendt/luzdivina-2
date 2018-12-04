@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Comunidad, Boda, Bautizo, Comunion, Comunidadcatolica
+from .models import Comunidad, Boda, Bautizo, Comunion, Comunidadcatolica, Agente, Coordinador, Ministro
 
 # Create your views here.
 
@@ -7,11 +7,54 @@ from .models import Comunidad, Boda, Bautizo, Comunion, Comunidadcatolica
 def Home(request):
     return render(request, 'core/index.html')
 
+def FormularioAgente(request):
+    lt = Agente.objects.all()
+    if request.POST:
+        nombreAgente = request.POST["nombreAgente"]
+       
+        agente = Agente(
+            nombreAgente = nombreAgente
+        )
+
+        agente.save()
+    return render(request, 'core/formularioAgente.html', {'agentes': lt, 'mensaje': 'Registrado Correctamente'})
+
+    return render(request, 'core/formularioAgente.html', {'agentes': lt})
+
+def FormularioMinistro(request):
+    lt = Ministro.objects.all()
+    if request.POST:
+        nombreMinistro = request.POST["nombreMinistro"]
+       
+        ministro = Ministro(
+            nombreMinistro = nombreMinistro
+        )
+
+        ministro.save()
+    return render(request, 'core/formularioMinistro.html', {'ministros': lt, 'mensaje': 'Registrado Correctamente'})
+
+    return render(request, 'core/formularioMinistro.html', {'ministros': lt})
+
+
+def FormularioCoordinador(request):
+    lt = Coordinador.objects.all()
+    if request.POST:
+        nombreCoordinador = request.POST["nombreCoordinador"]
+       
+        coordinador = Coordinador(
+            nombreCoordinador = nombreCoordinador
+        )
+
+        coordinador.save()
+    return render(request, 'core/formularioCoordinador.html', {'coordinadores': lt, 'mensaje': 'Registrado Correctamente'})
+
+    return render(request, 'core/formularioCoordinador.html', {'coordinadores': lt})
+
 
 def Bautiso(request):
     listado = Bautizo.objects.all()
     comunidadCatolica = Comunidadcatolica.objects.all()
-    return render(request, 'core/formularioBautizo.html', {'listado':listado,'comunidadCatolica':comunidadCatolica})
+    return render(request, 'core/formularioBautizo.html', {'listado': listado, 'comunidadCatolica': comunidadCatolica})
 
 
 def Formulario(request):
@@ -42,11 +85,58 @@ def Formulario(request):
 def Comunione(request):
     listado = Comunion.objects.all()
     comunidadCatolica = Comunidadcatolica.objects.all()
-    return render(request, 'core/formularioComunion.html', {'listado':listado,'comunidadCatolica':comunidadCatolica})
+    return render(request, 'core/formularioComunion.html', {'listado': listado, 'comunidadCatolica': comunidadCatolica})
 
+
+def Listado(request):
+    listado = Comunidad.objects.all()
+    listado_uno = Agente.objects.all()
+    listado_dos = Coordinador.objects.all()
+    listado_tres = Ministro.objects.all()
+    comunidadCatolica = Comunidadcatolica.objects.all()
+    return render(request, 'core/indexLogin.html', {'listado': listado, 'listado_uno': listado_uno, 'listado_dos': listado_dos, 'listado_tres': listado_tres, 'comunidadCatolica': comunidadCatolica})
 
 def Listado(request):
     listado = Boda.objects.all()
     comunidadCatolica = Comunidadcatolica.objects.all()
-    return render(request, 'core/formulario.html', {'listado':listado,'comunidadCatolica':comunidadCatolica})
+    return render(request, 'core/formulario.html', {'listado': listado, 'comunidadCatolica': comunidadCatolica})
 
+
+def Login(request):
+    if request.POST:
+        usuario = request.POST["usuario"]
+        password = request.POST["password"]
+        login = Login.objects.get(usuario=usuario, password=password)
+    return render(request, 'core/login.html')
+
+def IndexLogin(request):
+    return render(request, 'core/indexLogin.html')
+
+
+def FormularioComunidad(request):
+    lt = Comunidadcatolica.objects.all()
+    if request.POST:
+        NombreComunidad = request.POST["NombreComunidad"]
+       
+        comunidadCatolica = Comunidadcatolica(
+            NombreComunidad = NombreComunidad
+        )
+
+        comunidadCatolica.save()
+    return render(request, 'core/formularioComunidad.html', {'comunidades': lt, 'mensaje': 'Registrado Correctamente'})
+
+    return render(request, 'core/formularioComunidad.html', {'comunidades': lt})
+
+def FormularioParroquia(request):
+    lt = Comunidad.objects.all()
+    if request.POST:
+        nombre = request.POST["nombre"]
+       
+        comunidad = Comunidad(
+            nombre = nombre
+        )
+
+        comunidad.save()
+    return render(request, 'core/formularioParroquia.html', {'parroquias': lt, 'mensaje': 'Registrado Correctamente'})
+
+    return render(request, 'core/formularioParroquia.html', {'parroquias': lt})
